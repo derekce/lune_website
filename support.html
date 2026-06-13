@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Support — Luna: Your Cosmic Companion</title>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icon.png" />
+<style>
+  :root{
+    --bg:#080c1a; --panel:#0e1430; --text:#e8ecf8; --muted:#9aa3c4;
+    --accent:#f9a825; --line:#1d2546; --link:#ffd373;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:48px 24px 80px}
+  header{display:flex; align-items:center; gap:14px; margin-bottom:8px}
+  .appicon{width:40px;height:40px;border-radius:11px; display:block;
+    box-shadow:0 0 22px rgba(249,168,37,.35)}
+  h1{font-size:1.9rem; margin:.2em 0 .1em; letter-spacing:.3px}
+  h2{font-size:1.15rem; margin:2em 0 .5em; color:var(--accent)}
+  .sub{color:var(--muted); font-size:.92rem; margin:0}
+  .intro{color:var(--muted); margin:18px 0 32px; padding-bottom:24px;
+    border-bottom:1px solid var(--line)}
+  p,li{color:var(--text)}
+  a{color:var(--link); text-decoration:none} a:hover{text-decoration:underline}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:6px 22px; margin:18px 0}
+  .q{font-weight:600; color:var(--text); margin:18px 0 4px}
+  .a{color:var(--muted); margin:0 0 18px}
+  .contact{background:rgba(249,168,37,.08); border:1px solid rgba(249,168,37,.3);
+    border-radius:14px; padding:20px 22px; margin:28px 0}
+  .contact a{font-weight:600}
+  footer{margin-top:48px; padding-top:24px; border-top:1px solid var(--line);
+    color:var(--muted); font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img class="appicon" src="icon.png" alt="Luna app icon" />
+    <div>
+      <h1>Support</h1>
+      <p class="sub">Luna: Your Cosmic Companion</p>
+    </div>
+  </header>
+  <p class="intro">Need a hand, found a bug, or have an idea? We'd love to hear from you.</p>
+
+  <div class="contact">
+    <p style="margin:0 0 4px"><strong>Get in touch</strong></p>
+    <p style="margin:0; color:var(--muted)">Email <a href="mailto:derek@crowdengine.net">derek@crowdengine.net</a>
+    and we'll get back to you. Including your device model and iOS version helps us help you faster.</p>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+  <div class="card">
+    <p class="q">What does Luna do?</p>
+    <p class="a">Luna shows you the current moon phase, counts down to the next full moon, and offers
+    a daily affirmation. You can set personal intentions for each half of the lunar cycle, save moon
+    events to your calendar, and add a home-screen widget.</p>
+
+    <p class="q">Why does Luna ask for my location?</p>
+    <p class="a">Only to show local weather next to the moon. If you'd rather not share it, decline the
+    permission — everything else in the app still works. You can change this anytime in your device's
+    Settings under Luna.</p>
+
+    <p class="q">Does Luna need an internet connection?</p>
+    <p class="a">No. Moon phases are calculated right on your device, so the core app works fully
+    offline. An internet connection is only used to fetch current weather.</p>
+
+    <p class="q">How do I turn the cycle reminders on or off?</p>
+    <p class="a">Reminders follow your notification permission. To stop them, turn off notifications for
+    Luna in your device's Settings. (A built-in toggle is on our roadmap.)</p>
+
+    <p class="q">The home-screen widget looks wrong or won't update.</p>
+    <p class="a">Try removing and re-adding the widget. Widgets refresh periodically rather than
+    instantly, so give it a little time. If it still looks off, email us with a screenshot.</p>
+
+    <p class="q">Do you collect any of my data?</p>
+    <p class="a">No. Luna has no accounts, no analytics, and no trackers. See our
+    <a href="privacy.html">Privacy Policy</a> for the full details.</p>
+
+    <p class="q">How do I delete my data?</p>
+    <p class="a">All your data lives on your device. Deleting the app removes it. You can also clear
+    saved content from within the app or your device settings.</p>
+  </div>
+
+  <footer>
+    <p>© 2026 DEKAI · Luna: Your Cosmic Companion ·
+    <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+</div>
+</body>
+</html>

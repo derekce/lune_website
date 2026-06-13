@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Luna: Your Cosmic Companion — Moon Phases, Intentions & Inspiration</title>
+<meta name="description" content="Luna tracks every moon phase, counts down to the next full moon, and turns each lunar cycle into a moment to set your intentions. Private by design. Free on the App Store." />
+<meta property="og:title" content="Luna: Your Cosmic Companion" />
+<meta property="og:description" content="Live in rhythm with the moon. Moon phases, full-moon countdowns, daily affirmations and intentions — private by design." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icon.png" />
+<style>
+  :root{
+    --bg:#080c1a; --bg2:#0b1228; --panel:#0e1430; --text:#eef1fb; --muted:#9aa3c4;
+    --accent:#f9a825; --accent2:#ffd373; --line:#1d2546; --link:#ffd373;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  a{color:var(--link); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+
+  /* NAV */
+  nav{display:flex; align-items:center; justify-content:space-between;
+    padding:22px 0; position:relative; z-index:5}
+  .brand{display:flex; align-items:center; gap:11px; font-weight:600; letter-spacing:.3px}
+  .brand .appicon{width:32px;height:32px;border-radius:9px; display:block;
+    box-shadow:0 0 20px rgba(249,168,37,.35)}
+  nav .links a{color:var(--muted); margin-left:22px; font-size:.94rem}
+  nav .links a:hover{color:var(--text); text-decoration:none}
+
+  /* HERO */
+  .hero{position:relative; padding:46px 0 70px;
+    background:
+      radial-gradient(1200px 600px at 78% -8%, rgba(249,168,37,.16), transparent 60%),
+      radial-gradient(900px 500px at 12% 8%, rgba(94,120,255,.14), transparent 55%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    overflow:hidden}
+  .stars{position:absolute; inset:0; z-index:0; pointer-events:none}
+  .hero .wrap{position:relative; z-index:2}
+  .hero-inner{display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center}
+  .eyebrow{display:inline-block; color:var(--accent); font-size:.8rem; letter-spacing:.18em;
+    text-transform:uppercase; border:1px solid rgba(249,168,37,.35);
+    background:rgba(249,168,37,.08); border-radius:999px; padding:5px 14px; margin-bottom:20px}
+  h1{font-size:clamp(2.1rem,4.6vw,3.4rem); line-height:1.08; margin:.1em 0 .35em; letter-spacing:-.5px}
+  h1 .grad{background:linear-gradient(90deg,#fff,#ffd373); -webkit-background-clip:text;
+    background-clip:text; color:transparent}
+  .lede{font-size:1.13rem; color:var(--muted); max-width:30em; margin:0 0 30px}
+  .cta-row{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+  .note{color:var(--muted); font-size:.85rem; margin-top:14px}
+
+  /* APP STORE BADGE */
+  .badge{display:inline-flex; align-items:center; gap:11px; background:#000;
+    border:1px solid #2a2f45; color:#fff; border-radius:13px; padding:10px 16px;
+    transition:transform .15s ease, box-shadow .15s ease}
+  .badge:hover{text-decoration:none; transform:translateY(-2px);
+    box-shadow:0 10px 30px rgba(0,0,0,.5)}
+  .badge svg{width:26px;height:26px;flex:none}
+  .badge .b-txt{display:flex; flex-direction:column; line-height:1.1}
+  .badge .b-small{font-size:.62rem; letter-spacing:.02em; color:#cfd3e6}
+  .badge .b-big{font-size:1.18rem; font-weight:600; letter-spacing:.01em}
+
+  /* PHONE MOCKUP */
+  .phone-col{display:flex; justify-content:center}
+  .phone{position:relative; width:268px; height:548px; border-radius:42px;
+    background:linear-gradient(160deg,#181f3d,#0b1024); padding:13px;
+    box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 0 2px #2a3158, inset 0 0 0 2px #000;}
+  .notch{position:absolute; top:13px; left:50%; transform:translateX(-50%);
+    width:120px; height:26px; background:#000; border-radius:0 0 16px 16px; z-index:3}
+  .screen{position:relative; height:100%; border-radius:30px; overflow:hidden;
+    background:radial-gradient(120% 80% at 50% 0%, #122046 0%, #080c1a 60%);
+    display:flex; flex-direction:column; align-items:center}
+  .shot{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:5}
+  .screen .date{margin-top:46px; color:var(--muted); font-size:.78rem; letter-spacing:.12em;
+    text-transform:uppercase}
+  .bigmoon{margin-top:30px; width:150px; height:150px; border-radius:50%;
+    background:radial-gradient(circle at 36% 30%, #fff8e6 0%, #ffe6a6 30%, #f9a825 62%, #9c6206 100%);
+    box-shadow:0 0 60px rgba(249,168,37,.45), inset -22px -12px 40px rgba(0,0,0,.45)}
+  .phase{margin-top:26px; font-size:1.25rem; font-weight:600}
+  .count{margin-top:6px; color:var(--accent2); font-size:.9rem}
+  .affirm{margin:auto 22px 30px; color:#cfd6f0; font-size:.86rem; font-style:italic;
+    text-align:center; line-height:1.5; border-top:1px solid rgba(255,255,255,.08); padding-top:18px}
+
+  /* SECTIONS */
+  section.block{padding:74px 0}
+  .center{text-align:center; max-width:40em; margin:0 auto 46px}
+  h2{font-size:clamp(1.6rem,3vw,2.2rem); margin:0 0 .4em; letter-spacing:-.3px}
+  .center p{color:var(--muted); margin:0; font-size:1.06rem}
+
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .feature{background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:24px 22px; transition:border-color .2s ease, transform .2s ease}
+  .feature:hover{border-color:rgba(249,168,37,.45); transform:translateY(-3px)}
+  .feature .ic{width:42px;height:42px;border-radius:11px; display:flex; align-items:center;
+    justify-content:center; background:rgba(249,168,37,.12); border:1px solid rgba(249,168,37,.3);
+    margin-bottom:14px; font-size:1.2rem}
+  .feature h3{margin:0 0 6px; font-size:1.06rem}
+  .feature p{margin:0; color:var(--muted); font-size:.95rem}
+
+  /* PRIVACY STRIP */
+  .privacy{background:
+      radial-gradient(700px 300px at 50% 0%, rgba(94,120,255,.12), transparent 60%),
+      var(--bg2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .privacy .wrap{text-align:center; padding:64px 24px}
+  .privacy h2{margin-bottom:.3em}
+  .privacy p{color:var(--muted); max-width:36em; margin:0 auto}
+
+  /* FINAL CTA */
+  .final{text-align:center; padding:84px 24px}
+  .final h2{margin-bottom:.5em}
+  .final p{color:var(--muted); margin:0 auto 28px; max-width:32em}
+
+  footer{border-top:1px solid var(--line); padding:30px 0; color:var(--muted); font-size:.86rem}
+  footer .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px}
+  footer .links a{color:var(--muted); margin-left:20px}
+  footer .links a:hover{color:var(--text); text-decoration:none}
+
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr; gap:30px; text-align:center}
+    .lede{margin-left:auto; margin-right:auto}
+    .cta-row{justify-content:center}
+    .grid{grid-template-columns:1fr 1fr}
+    nav .links{display:none}
+  }
+  @media (max-width:560px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <svg class="stars" preserveAspectRatio="none" viewBox="0 0 1080 700" aria-hidden="true">
+    <g fill="#ffffff">
+      <circle cx="90" cy="80" r="1.2" opacity=".7"/><circle cx="220" cy="150" r="1" opacity=".5"/>
+      <circle cx="340" cy="60" r="1.4" opacity=".8"/><circle cx="500" cy="120" r="1" opacity=".5"/>
+      <circle cx="640" cy="50" r="1.2" opacity=".6"/><circle cx="780" cy="160" r="1" opacity=".5"/>
+      <circle cx="900" cy="90" r="1.5" opacity=".8"/><circle cx="1000" cy="180" r="1" opacity=".5"/>
+      <circle cx="150" cy="280" r="1" opacity=".5"/><circle cx="420" cy="300" r="1.3" opacity=".7"/>
+      <circle cx="700" cy="320" r="1" opacity=".5"/><circle cx="960" cy="360" r="1.2" opacity=".6"/>
+      <circle cx="60" cy="420" r="1.1" opacity=".6"/><circle cx="300" cy="470" r="1" opacity=".4"/>
+      <circle cx="560" cy="430" r="1.3" opacity=".7"/><circle cx="840" cy="500" r="1" opacity=".5"/>
+    </g>
+  </svg>
+
+  <div class="wrap">
+    <nav>
+      <div class="brand"><img class="appicon" src="icon.png" alt="Luna app icon" /> Luna</div>
+      <div class="links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="support.html">Support</a>
+      </div>
+    </nav>
+
+    <div class="hero-inner" style="padding-top:24px">
+      <div>
+        <span class="eyebrow">Moon phases · Intentions · Inspiration</span>
+        <h1>Live in rhythm <span class="grad">with the moon.</span></h1>
+        <p class="lede">Luna tracks every phase in real time, counts down to the next full moon,
+        and turns each lunar cycle into a moment to pause and set your intentions.</p>
+        <div class="cta-row">
+          <a class="badge" href="https://apps.apple.com/app/id6780005529" target="_blank" rel="noopener" aria-label="Download Luna on the App Store">
+            <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.36 1.43c.04 1.06-.36 2.1-1.04 2.86-.72.8-1.9 1.42-3.03 1.33-.12-1.04.39-2.13 1.03-2.82.72-.78 1.96-1.36 3.04-1.37zM20.4 17.2c-.55 1.28-.82 1.85-1.53 2.98-1 1.58-2.4 3.54-4.14 3.55-1.55.02-1.95-1.01-4.05-1-2.1.01-2.54 1.02-4.09 1.01-1.74-.02-3.07-1.79-4.06-3.36-2.78-4.41-3.07-9.58-1.36-12.33 1.22-1.96 3.14-3.1 4.95-3.1 1.84 0 3 1.01 4.52 1.01 1.48 0 2.38-1.01 4.51-1.01 1.61 0 3.32.88 4.54 2.39-3.99 2.19-3.34 7.88.26 9.86z"/></svg>
+            <span class="b-txt"><span class="b-small">Download on the</span><span class="b-big">App Store</span></span>
+          </a>
+        </div>
+        <p class="note">Free · iPhone · Works offline · No account needed</p>
+      </div>
+
+      <div class="phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="screen">
+            <img class="shot" src="screenshot.png" alt="Luna app screenshot" onerror="this.remove()" />
+            <div class="date">Today</div>
+            <div class="bigmoon"></div>
+            <div class="phase">Waxing Gibbous</div>
+            <div class="count">🌕 4 days until the full moon</div>
+            <div class="affirm">"Trust the timing of your life. What you nurture now will rise to fullness."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="block" id="features">
+  <div class="wrap">
+    <div class="center">
+      <h2>A little cosmic perspective, every day</h2>
+      <p>Everything you need to follow the moon and stay grounded in its rhythm — beautifully simple,
+      and built to respect your privacy.</p>
+    </div>
+    <div class="grid">
+      <div class="feature">
+        <div class="ic">🌙</div>
+        <h3>Every phase, in real time</h3>
+        <p>Precise moon phases calculated right on your device — accurate anywhere, even fully offline.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">🌕</div>
+        <h3>Full-moon countdown</h3>
+        <p>Always know exactly how many days remain until the next full moon.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">✨</div>
+        <h3>Daily affirmations</h3>
+        <p>A moment of inspiration waiting for you each time you check in.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">🪶</div>
+        <h3>Set your intentions</h3>
+        <p>Mark each half of the lunar cycle with what you want to grow, release, or invite in.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">📅</div>
+        <h3>Moon events in your calendar</h3>
+        <p>Save full moons and key moments straight to the calendar you already use.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">📲</div>
+        <h3>Home-screen widget</h3>
+        <p>The moon, your countdown, and today's affirmation — all at a glance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="privacy" id="privacy">
+  <div class="wrap">
+    <h2>Private by design</h2>
+    <p>No accounts. No analytics. No advertising. No trackers. Luna keeps your intentions and
+    preferences on your device — the only thing that ever leaves is a location lookup for weather,
+    if you choose to enable it. That's the whole story. <a href="privacy.html">Read our privacy policy →</a></p>
+  </div>
+</div>
+
+<div class="final">
+  <h2>Your cosmic companion is waiting</h2>
+  <p>Download Luna and start following the moon today.</p>
+  <a class="badge" href="https://apps.apple.com/app/id6780005529" target="_blank" rel="noopener" aria-label="Download Luna on the App Store">
+    <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.36 1.43c.04 1.06-.36 2.1-1.04 2.86-.72.8-1.9 1.42-3.03 1.33-.12-1.04.39-2.13 1.03-2.82.72-.78 1.96-1.36 3.04-1.37zM20.4 17.2c-.55 1.28-.82 1.85-1.53 2.98-1 1.58-2.4 3.54-4.14 3.55-1.55.02-1.95-1.01-4.05-1-2.1.01-2.54 1.02-4.09 1.01-1.74-.02-3.07-1.79-4.06-3.36-2.78-4.41-3.07-9.58-1.36-12.33 1.22-1.96 3.14-3.1 4.95-3.1 1.84 0 3 1.01 4.52 1.01 1.48 0 2.38-1.01 4.51-1.01 1.61 0 3.32.88 4.54 2.39-3.99 2.19-3.34 7.88.26 9.86z"/></svg>
+    <span class="b-txt"><span class="b-small">Download on the</span><span class="b-big">App Store</span></span>
+  </a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><img class="appicon" src="icon.png" alt="Luna app icon" /> Luna · Your Cosmic Companion</div>
+    <div class="links">
+      <span>© 2026 DEKAI</span>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
